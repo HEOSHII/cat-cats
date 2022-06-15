@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/index.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Cat & Cats</title>
+  </head>
+  <body>
+    <div id="app" class="page">
+      <div class="container">
+        <header class="header">
+          <button
+            :class="[myCats ? 'on' : '']"
+            class="header__button my-button"
+            @click="changeOpenedPage"
+          >
+            Meow
+          </button>
+          <h1
+            class="header__logo"
+            :class="[myCats ? '':'on']"
+            @click="this.myCats = false"
+          >
+            Cat<span>'n'</span>Cats
+          </h1>
+          <button class="header__button add-button" @click="toggleForm">
+            +
+          </button>
+        </header>
+
+        <transition name="fade">
+          <div class="add-cat-form" v-show="this.openForm" @click="handlerForm">
+            <form @submit.prevent="handlerSubmit">
+              <input
+                class="upload-input"
+                type="file"
+                id="uploadCat"
+                name="uploadCat"
+                ref="file"
+                @change="uploadFile"
+              />
+
+              <div class="input" v-show="!uploadingFile && !fileUploaded">
+                <label for="uploadCat" class="input__label">
+                  <span class="input__file-icon"
+                    ><img
+                      class="input__file-icon"
+                      src="./src/assets/upload.png"
+                      alt="Choose file"
+                      width="25"
+                  /></span>
+                  <span
+                    class="input__file-button-text"
+                    :style="{color: error ? 'red' : 'green'}"
+                    >{{ uploadText }}</span
+                  >
+                </label>
+
+                <button class="submit__button" type="submit">UPLOAD</button>
+              </div>
+
+              <div class="uploading-file" v-show="uploadingFile">
+                UPLOADING...
+                <Loading></Loading>
+              </div>
+
+              <div class="succes" v-show="fileUploaded">
+                {{messages.fileUploadedMessage}}
+                <img src="./src/assets/succes.png" alt="succes" />
+              </div>
+            </form>
+            <button class="close-form" @click="toggleForm">╳</button>
+          </div>
+        </transition>
+
+        <main
+          class="main"
+          @scroll="handlerScroll"
+          :style="{
+          overflowY: this.openForm ? 'hidden' : 'unset'
+      }"
+        >
+          <div
+            class="view-mode"
+            :class="this.viewMode"
+            v-if="images.length !== 0"
+          >
+            <button class="many-button" @click="this.viewMode='many'">
+              <div class="many-button__item"></div>
+              <div class="many-button__item"></div>
+              <div class="many-button__item"></div>
+              <div class="many-button__item"></div>
+              <div class="many-button__item"></div>
+              <div class="many-button__item"></div>
+            </button>
+            <div class="line"></div>
+            <button class="one-button" @click="this.viewMode='one'">
+              <div class="one-button__item"></div>
+            </button>
+          </div>
+
+          <div
+            class="main__content"
+            ref="content"
+            :style="{
+                width: images.length === 0 ? '100%' : 'auto',
+                height: images.length === 0 ? '100%' : 'auto'
+            }"
+          >
+            <Loading v-if="images.length === 0"></Loading>
+
+            <div class="cats" :class="this.viewMode" v-else>
+              <div class="cat" v-show="!myCats" v-for="image in images">
+                <img
+                  :id="image.id"
+                  class="cat__image"
+                  :src="image.url"
+                  alt="image"
+                />
+              </div>
+
+              <div class="cat" v-show="myCats" v-for="image in myImages">
+                <img
+                  :id="image.id"
+                  class="cat__image"
+                  :src="image.url"
+                  alt="image"
+                />
+                <Loading v-show="removing"></Loading>
+                <button
+                  v-show="!removing"
+                  class="cat__remove-button"
+                  @click="removeImage(image.id)"
+                >
+                  <img src="./src/assets/trash.png" alt="remove" />
+                </button>
+              </div>
+              <div v-show="!myImages.length">
+                {{messages.emptyFilesMessage}}
+              </div>
+            </div>
+          </div>
+          <div v-show="!myCats">
+            <button
+              class="more-cats"
+              @click="loadMoreCats"
+              v-if="!this.hide && this.images.length"
+              ref="loadButton"
+            >
+              More Cats, please
+            </button>
+            <Loading v-else-if="this.images.length"></Loading>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./src/index.js"></script>
+  </body>
+</html>

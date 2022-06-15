@@ -1,0 +1,109 @@
+.header {
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  &__logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 28px;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      color: $grey;
+      transform: scale(1.02);
+      span {
+        color: #f8847f;
+      }
+    }
+    &:active {
+      transition: all 0s;
+      transform: scale(1.01);
+      text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+    }
+    span {
+      transition: inherit;
+      font-family: $caligraph-font;
+      color: $grey;
+      margin: 0 5px;
+    }
+    &.on {
+      color: $grey;
+      transform: scale(1.02);
+      span {
+        color: #f8847f;
+      }
+    }
+  }
+
+  &__button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: none;
+    background: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+    color: $grey;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    &:hover {
+      transform: scale(1.02);
+      background: $grey;
+      color: white;
+      box-shadow: 4px 7px 7px rgba(0, 0, 0, 0.2);
+      &::after {
+        opacity: 1;
+        color: $grey;
+      }
+    }
+
+    &:active {
+      transition: all 0s;
+      transform: scale(1.01);
+      box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    &.on {
+      transform: scale(1.02);
+      background: $grey;
+      color: white;
+      box-shadow: 4px 7px 7px rgba(0, 0, 0, 0.2);
+      &::after {
+        opacity: 1;
+        color: $grey;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: max-content;
+      font-size: 24px;
+      opacity: 0;
+      transition: all 0.2s;
+      pointer-events: none;
+      font-family: $caligraph-font;
+      text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+    }
+    &.my-button {
+      &::after {
+        content: "my cats";
+        left: -110%;
+      }
+    }
+    &.add-button {
+      &::after {
+        content: "add cat";
+        right: -110%;
+      }
+    }
+  }
+}
