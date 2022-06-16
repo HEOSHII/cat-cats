@@ -13,6 +13,7 @@
   background: -webkit-linear-gradient(340deg, #c6ffdd 0.08%, #fbd786 49.49%, #f7797d 99.48%);
   background: -o-linear-gradient(340deg, #c6ffdd 0.08%, #fbd786 49.49%, #f7797d 99.48%);
   background: linear-gradient(110deg, #c6ffdd 0.08%, #fbd786 49.49%, #f7797d 99.48%);
+  overflow: hidden;
 }
 
 .container {
@@ -42,9 +43,14 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: white;
+  color: #545454;
   font-size: 28px;
   text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+  background: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   -webkit-transition: all 0.2s;
   -o-transition: all 0.2s;
@@ -52,10 +58,11 @@
 }
 
 .header__logo:hover {
-  color: #545454;
+  color: white;
   -webkit-transform: scale(1.02);
       -ms-transform: scale(1.02);
           transform: scale(1.02);
+  background: #545454;
 }
 
 .header__logo:hover span {
@@ -82,10 +89,11 @@
 }
 
 .header__logo.on {
-  color: #545454;
+  color: white;
   -webkit-transform: scale(1.02);
       -ms-transform: scale(1.02);
           transform: scale(1.02);
+  background: #545454;
 }
 
 .header__logo.on span {

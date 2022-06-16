@@ -7,14 +7,19 @@
   &__logo {
     display: flex;
     align-items: center;
-    color: white;
+    color: $grey;
     font-size: 28px;
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
+    background: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 0.2s;
     &:hover {
-      color: $grey;
+      color: white;
       transform: scale(1.02);
+      background: $grey;
       span {
         color: #f8847f;
       }
@@ -31,8 +36,9 @@
       margin: 0 5px;
     }
     &.on {
-      color: $grey;
+      color: white;
       transform: scale(1.02);
+      background: $grey;
       span {
         color: #f8847f;
       }
