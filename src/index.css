@@ -13,6 +13,7 @@
   background: -webkit-linear-gradient(340deg, #c6ffdd 0.08%, #fbd786 49.49%, #f7797d 99.48%);
   background: -o-linear-gradient(340deg, #c6ffdd 0.08%, #fbd786 49.49%, #f7797d 99.48%);
   background: linear-gradient(110deg, #c6ffdd 0.08%, #fbd786 49.49%, #f7797d 99.48%);
+  overflow: hidden;
 }
 
 .container {
