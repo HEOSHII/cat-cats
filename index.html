@@ -17,18 +17,12 @@
             class="header__button my-button"
             @click="changeOpenedPage"
           >
-            Meow
+            Meows
           </button>
-          <h1
-            class="header__logo"
-            :class="[myCats ? '':'on']"
-            @click="this.myCats = false"
-          >
+          <h1 class="header__logo" :class="[myCats ? '':'on']" @click="this.myCats = false">
             Cat<span>'n'</span>Cats
           </h1>
-          <button class="header__button add-button" @click="toggleForm">
-            +
-          </button>
+          <button class="header__button add-button" @click="toggleForm">+</button>
         </header>
 
         <transition name="fade">
@@ -52,9 +46,7 @@
                       alt="Choose file"
                       width="25"
                   /></span>
-                  <span
-                    class="input__file-button-text"
-                    :style="{color: error ? 'red' : 'green'}"
+                  <span class="input__file-button-text" :style="{color: error ? 'red' : 'green'}"
                     >{{ uploadText }}</span
                   >
                 </label>
@@ -83,11 +75,7 @@
           overflowY: this.openForm ? 'hidden' : 'unset'
       }"
         >
-          <div
-            class="view-mode"
-            :class="this.viewMode"
-            v-if="images.length !== 0"
-          >
+          <div class="view-mode" :class="this.viewMode" v-if="images.length !== 0">
             <button class="many-button" @click="this.viewMode='many'">
               <div class="many-button__item"></div>
               <div class="many-button__item"></div>
@@ -114,21 +102,11 @@
 
             <div class="cats" :class="this.viewMode" v-else>
               <div class="cat" v-show="!myCats" v-for="image in images">
-                <img
-                  :id="image.id"
-                  class="cat__image"
-                  :src="image.url"
-                  alt="image"
-                />
+                <img :id="image.id" class="cat__image" :src="image.url" alt="image" />
               </div>
 
               <div class="cat" v-show="myCats" v-for="image in myImages">
-                <img
-                  :id="image.id"
-                  class="cat__image"
-                  :src="image.url"
-                  alt="image"
-                />
+                <img :id="image.id" class="cat__image" :src="image.url" alt="image" />
                 <Loading v-show="removing"></Loading>
                 <button
                   v-show="!removing"
@@ -139,9 +117,7 @@
                 </button>
               </div>
             </div>
-            <div v-show="!myImages.length && myCats">
-              {{messages.emptyFilesMessage}}
-            </div>
+            <div v-show="!myImages.length && myCats">{{messages.emptyFilesMessage}}</div>
           </div>
           <div v-show="!myCats">
             <button
